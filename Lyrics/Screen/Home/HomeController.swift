@@ -9,6 +9,7 @@ import UIKit
 
 class HomeController: UIViewController {
     
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet private weak var artistTextField: UITextField!
     @IBOutlet private weak var musicTextField: UITextField!
     
@@ -17,7 +18,17 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureUI()
         configureViewModel()
+    }
+    
+    private func configureUI() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+            view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     private func configureViewModel() {
